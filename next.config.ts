@@ -2,22 +2,18 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: 'export', // Статический экспорт
+  assetPrefix: '/harvest_frenzy/',
+  basePath: '/harvest_frenzy', // Если проект НЕ в корне (user.github.io/repo-name)
+  images: {
+    unoptimized: true, // Обязательно для gh-pages
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-  },
+  }
 };
 
 export default nextConfig;
