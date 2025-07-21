@@ -79,7 +79,7 @@ export default function Home() {
     }
     
     // Global bonus trigger
-    if (Math.random() < 0.5) { // 50% chance to start bonus rolls
+    if (true) { // 50% chance to start bonus rolls
       const bonusColor = clickedBush.color;
       let bonusTriggered = false;
 
