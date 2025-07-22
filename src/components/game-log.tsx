@@ -1,11 +1,13 @@
 "use client";
 
+import { useContext } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { LogEntry } from "@/types";
 import { BookText, Zap, Pointer } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { LanguageContext, translations } from "@/context/language-context";
 
 interface GameLogProps {
   logs: LogEntry[];
@@ -18,16 +20,29 @@ const logTypeConfig = {
 };
 
 export default function GameLog({ logs }: GameLogProps) {
+  const { language } = useContext(LanguageContext);
+  const t = translations[language];
+
+  const translateLog = (log: LogEntry) => {
+    let message = t[log.message as keyof typeof t] || log.message;
+    if (log.values) {
+        Object.entries(log.values).forEach(([key, value]) => {
+            message = message.replace(`{${key}}`, value);
+        });
+    }
+    return message;
+  }
+
   return (
     <Card className="h-full flex flex-col">
       <CardHeader className="flex flex-row items-center gap-2">
         <BookText className="h-6 w-6 text-primary" />
-        <CardTitle>Game Log</CardTitle>
+        <CardTitle>{t.game_log_title}</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow p-0">
         <ScrollArea className="h-[600px] p-4">
             <div className="space-y-4">
-            {logs.length === 0 && <p className="text-muted-foreground text-center p-4">No actions yet. Start harvesting!</p>}
+            {logs.length === 0 && <p className="text-muted-foreground text-center p-4">{t.game_log_empty}</p>}
             {logs.map((log, index) => {
                 const config = logTypeConfig[log.type];
                 const Icon = config.icon;
@@ -37,7 +52,7 @@ export default function GameLog({ logs }: GameLogProps) {
                             <Icon className="h-3.5 w-3.5" />
                         </div>
                         <div className="flex-grow">
-                            <p className="text-sm text-foreground/90">{log.message}</p>
+                            <p className="text-sm text-foreground/90">{translateLog(log)}</p>
                             <p className="text-xs text-muted-foreground">
                                 {log.timestamp.toLocaleTimeString()}
                             </p>

@@ -19,4 +19,5 @@ export interface LogEntry {
   timestamp: Date;
   message: string;
   type: 'action' | 'event' | 'bonus';
+  values?: Record<string, string | number>;
 }

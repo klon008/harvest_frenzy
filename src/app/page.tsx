@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import { Plot, Scores, Bush, BushColor, LogEntry } from '@/types';
 import { generateInitialPlots } from '@/lib/game-logic';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,8 @@ import AiAssistant from '@/components/ai-assistant';
 import { Badge } from '@/components/ui/badge';
 import { BushIcon } from '@/components/icons/bush-icon';
 import GameLog from '@/components/game-log';
+import { LanguageContext, Language, translations } from '@/context/language-context';
+import LanguageSwitcher from '@/components/language-switcher';
 
 export default function Home() {
   const [plots, setPlots] = useState<Plot[]>([]);
@@ -18,10 +20,14 @@ export default function Home() {
   const [bonusApplied, setBonusApplied] = useState<string | null>(null);
   const [logs, setLogs] = useState<LogEntry[]>([]);
 
+  const { language } = useContext(LanguageContext);
+  const t = translations[language];
+
   const totalScore = useMemo(() => Object.values(scores).reduce((sum, score) => sum + score, 0), [scores]);
   
-  const addLog = (message: string, type: LogEntry['type'] = 'action') => {
-    setLogs(prev => [{ message, type, timestamp: new Date() }, ...prev]);
+  const addLog = (message: string, type: LogEntry['type'] = 'action', values?: Record<string, string | number>) => {
+    // We pass the key and values to the log, and it will be translated in the GameLog component
+    setLogs(prev => [{ message, type, timestamp: new Date(), values }, ...prev]);
   };
 
   const handlePlayAgain = useCallback(() => {
@@ -29,7 +35,7 @@ export default function Home() {
     setScores({ blue: 0, purple: 0, yellow: 0 });
     setIsGameOver(false);
     setLogs([]);
-    addLog("New game started!", "event");
+    addLog("log_new_game", "event");
   }, []);
 
   useEffect(() => {
@@ -39,7 +45,7 @@ export default function Home() {
   useEffect(() => {
     if (plots.length > 0 && plots.every(p => p.bushes.every(b => b.isWithered))) {
       setIsGameOver(true);
-      addLog(`Game Over! Final Score: ${totalScore}`, "event");
+      addLog("log_game_over", "event", { totalScore });
     }
   }, [plots, totalScore]);
 
@@ -58,7 +64,11 @@ export default function Home() {
 
     const points = clickedBush.value * clickedBush.bonusMultiplier;
     setScores(prev => ({ ...prev, [clickedBush.color]: prev[clickedBush.color] + points }));
-    addLog(`Harvested ${clickedBush.color} bush on Plot ${plotIndex + 1} for ${points} points.`, 'action');
+    addLog('log_harvest', 'action', {
+      color: clickedBush.color,
+      plot: plotIndex + 1,
+      points,
+    });
     
     clickedBush.isWithered = true;
 
@@ -67,42 +77,47 @@ export default function Home() {
     const neighborBush = newPlots[plotIndex].bushes[neighborIndex];
     if (neighborBush && !neighborBush.isWithered) {
       if (Math.random() < 0.6) { // 60% chance neighbor survives
-        addLog(`Neighbor bush on Plot ${plotIndex + 1} survived!`, 'event');
+        addLog('log_neighbor_survived', 'event', { plot: plotIndex + 1 });
         if (neighborBush.color !== clickedBush.color && Math.random() < 0.5) { // 50% chance value doubles if different color
           neighborBush.bonusMultiplier *= 2;
-          addLog(`Neighbor bush on Plot ${plotIndex + 1} value doubled to x${neighborBush.bonusMultiplier}!`, 'bonus');
+          addLog('log_neighbor_doubled', 'bonus', {
+            plot: plotIndex + 1,
+            multiplier: neighborBush.bonusMultiplier,
+          });
         }
       } else {
         neighborBush.isWithered = true;
-        addLog(`Neighbor bush on Plot ${plotIndex + 1} withered.`, 'event');
+        addLog('log_neighbor_withered', 'event', { plot: plotIndex + 1 });
       }
     }
     
     // Global bonus trigger
-    if (true) { // 50% chance to start bonus rolls
-      const bonusColor = clickedBush.color;
-      let bonusTriggered = false;
+    const bonusColor = clickedBush.color;
+    let bonusTriggered = false;
 
-      newPlots = newPlots.map((plot, pIdx) => ({
-        ...plot,
-        bushes: plot.bushes.map((bush, bIdx) => {
-          if (!bush.isWithered && bush.color !== bonusColor) {
-            if (Math.random() < 0.5) { // 50% chance for each bush
-              bonusTriggered = true;
-              addLog(`x2 bonus for ${bush.color} bush on Plot ${pIdx + 1}!`, 'bonus');
-              return { ...bush, bonusMultiplier: bush.bonusMultiplier * 2 };
-            }
+    newPlots = newPlots.map((plot, pIdx) => ({
+      ...plot,
+      bushes: plot.bushes.map((bush, bIdx) => {
+        if (!bush.isWithered && bush.color !== bonusColor) {
+          if (Math.random() < 0.5) { // 50% chance for each bush
+            bonusTriggered = true;
+            addLog('log_bonus_applied', 'bonus', {
+              color: bush.color,
+              plot: pIdx + 1,
+            });
+            return { ...bush, bonusMultiplier: bush.bonusMultiplier * 2 };
           }
-          return bush;
-        }) as [Bush, Bush],
-      }));
-      
-      if(bonusTriggered) {
-        const bonusMessage = `Bonus chance triggered for non-${bonusColor} bushes!`;
-        setBonusApplied(bonusMessage);
-        addLog(bonusMessage, 'event');
-        setTimeout(() => setBonusApplied(null), 2000);
-      }
+        }
+        return bush;
+      }) as [Bush, Bush],
+    }));
+    
+    if(bonusTriggered) {
+      const bonusMessageKey: keyof typeof t = 'bonus_triggered';
+      const bonusMessage = t[bonusMessageKey].replace('{color}', bonusColor);
+      setBonusApplied(bonusMessage);
+      addLog('log_bonus_triggered', 'event', { color: bonusColor });
+      setTimeout(() => setBonusApplied(null), 2000);
     }
 
     setPlots(newPlots);
@@ -112,12 +127,13 @@ export default function Home() {
     <main className="container mx-auto p-4 sm:p-6 md:p-8 font-body">
       <header className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
         <div className="text-center sm:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold font-headline text-primary-foreground/90 tracking-tight">Harvest Frenzy</h1>
-            <p className="text-muted-foreground mt-1">Click the bushes to harvest and maximize your score!</p>
+            <h1 className="text-4xl sm:text-5xl font-bold font-headline text-primary-foreground/90 tracking-tight">{t.title}</h1>
+            <p className="text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
         <div className="flex items-center gap-4">
+          <LanguageSwitcher />
           <Button onClick={handlePlayAgain} size="lg">
-            <RefreshCw className="mr-2 h-5 w-5" /> Play Again
+            <RefreshCw className="mr-2 h-5 w-5" /> {t.play_again}
           </Button>
         </div>
       </header>
@@ -139,7 +155,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <p className="text-sm text-muted-foreground">Total Score</p>
+              <p className="text-sm text-muted-foreground">{t.total_score}</p>
               <p className="text-3xl font-bold">{totalScore}</p>
             </div>
         </CardContent>
@@ -151,9 +167,9 @@ export default function Home() {
 
           {isGameOver && (
               <Card className="my-6 text-center p-6 bg-primary/20 border-primary">
-                  <h2 className="text-2xl font-bold">Game Over!</h2>
-                  <p className="text-xl mt-2">You harvested a total of <span className="font-bold text-primary-foreground">{totalScore}</span> fruits!</p>
-                  <Button onClick={handlePlayAgain} className="mt-4">Play Again</Button>
+                  <h2 className="text-2xl font-bold">{t.game_over_title}</h2>
+                  <p className="text-xl mt-2">{t.game_over_subtitle.replace('{totalScore}', totalScore.toString())}</p>
+                  <Button onClick={handlePlayAgain} className="mt-4">{t.play_again}</Button>
               </Card>
           )}
 
@@ -166,7 +182,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8">
             {plots.map((plot, plotIndex) => (
               <Card key={plot.id} className="p-4 flex flex-col items-center gap-4 shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 className="font-bold text-lg text-muted-foreground">Plot {plotIndex + 1}</h3>
+                <h3 className="font-bold text-lg text-muted-foreground">{t.plot} {plotIndex + 1}</h3>
                 <div className="flex justify-center items-end gap-4">
                   {plot.bushes.map((bush) => (
                     <div key={bush.id} className="relative flex flex-col items-center">
