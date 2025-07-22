@@ -12,6 +12,7 @@ import { BushIcon } from '@/components/icons/bush-icon';
 import GameLog from '@/components/game-log';
 import { LanguageContext, Language, translations } from '@/context/language-context';
 import LanguageSwitcher from '@/components/language-switcher';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 
 export default function Home() {
   const [plots, setPlots] = useState<Plot[]>([]);
@@ -75,16 +76,10 @@ export default function Home() {
     // Neighbor check
     const neighborIndex = bushIndex === 0 ? 1 : 0;
     const neighborBush = newPlots[plotIndex].bushes[neighborIndex];
+    
     if (neighborBush && !neighborBush.isWithered) {
       if (Math.random() < 0.6) { // 60% chance neighbor survives
         addLog('log_neighbor_survived', 'event', { plot: plotIndex + 1 });
-        if (neighborBush.color !== clickedBush.color && Math.random() < 0.5) { // 50% chance value doubles if different color
-          neighborBush.bonusMultiplier *= 2;
-          addLog('log_neighbor_doubled', 'bonus', {
-            plot: plotIndex + 1,
-            multiplier: neighborBush.bonusMultiplier,
-          });
-        }
       } else {
         neighborBush.isWithered = true;
         addLog('log_neighbor_withered', 'event', { plot: plotIndex + 1 });
@@ -97,7 +92,7 @@ export default function Home() {
 
     newPlots = newPlots.map((plot, pIdx) => ({
       ...plot,
-      bushes: plot.bushes.map((bush, bIdx) => {
+      bushes: plot.bushes.map((bush) => {
         if (!bush.isWithered && bush.color !== bonusColor) {
           if (Math.random() < 0.5) { // 50% chance for each bush
             bonusTriggered = true;
@@ -127,10 +122,11 @@ export default function Home() {
     <main className="container mx-auto p-4 sm:p-6 md:p-8 font-body">
       <header className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
         <div className="text-center sm:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold font-headline text-primary-foreground/90 tracking-tight">{t.title}</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold font-headline text-foreground/90 tracking-tight">{t.title}</h1>
             <p className="text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
         <div className="flex items-center gap-4">
+          <ThemeSwitcher />
           <LanguageSwitcher />
           <Button onClick={handlePlayAgain} size="lg">
             <RefreshCw className="mr-2 h-5 w-5" /> {t.play_again}
@@ -143,15 +139,15 @@ export default function Home() {
             <div className="flex items-center gap-4 sm:gap-6">
               <div className="flex items-center gap-2">
                 <BushIcon color="blue" className="w-8 h-8"/>
-                <span className="text-2xl font-bold text-blue-600">{scores.blue}</span>
+                <span className="text-2xl font-bold text-blue-400">{scores.blue}</span>
               </div>
               <div className="flex items-center gap-2">
                 <BushIcon color="purple" className="w-8 h-8"/>
-                <span className="text-2xl font-bold text-purple-600">{scores.purple}</span>
+                <span className="text-2xl font-bold text-purple-400">{scores.purple}</span>
               </div>
               <div className="flex items-center gap-2">
                 <BushIcon color="yellow" className="w-8 h-8"/>
-                <span className="text-2xl font-bold text-yellow-500">{scores.yellow}</span>
+                <span className="text-2xl font-bold text-yellow-400">{scores.yellow}</span>
               </div>
             </div>
             <div className="text-center">

@@ -47,8 +47,7 @@ Game Rules:
 - Each plot has two bushes that can be blue, purple, or yellow.
 - Clicking a bush yields 100 points of the corresponding color, and the bush withers.
 - There is a 60% chance the neighboring bush on that plot does not wither.
-- If the neighbor survives and is a different color, there is a 50% chance its value will be doubled (stackable, e.g., x2, x4, etc.).
-- When a bush is clicked, EACH other bush on ALL plots of a different color has a 50% chance to get a x2 bonus multiplier for subsequent harvests. This bonus can also stack.
+- When a bush is clicked, EACH other bush on ALL plots (including a surviving neighbor) of a different color has a 50% chance to get a x2 bonus multiplier for subsequent harvests. This bonus can stack (e.g., x2, x4, etc.).
 
 Based on this, what is your recommendation for the next harvest?`,
 };
