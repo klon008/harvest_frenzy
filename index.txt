@@ -1,25 +1,26 @@
 1:"$Sreact.fragment"
-2:I[356,["230","static/chunks/230-e9020ecd5fc9828b.js","177","static/chunks/app/layout-f2ed52e4367df914.js"],"default"]
-3:I[4505,["230","static/chunks/230-e9020ecd5fc9828b.js","177","static/chunks/app/layout-f2ed52e4367df914.js"],"LanguageProvider"]
-4:I[7555,[],""]
-5:I[1295,[],""]
-6:I[4029,["230","static/chunks/230-e9020ecd5fc9828b.js","177","static/chunks/app/layout-f2ed52e4367df914.js"],"Toaster"]
-7:I[894,[],"ClientPageRoot"]
-8:I[9464,["230","static/chunks/230-e9020ecd5fc9828b.js","779","static/chunks/779-7f2cf6f86599baf0.js","974","static/chunks/app/page-558fd2b8adf5085a.js"],"default"]
-b:I[9665,[],"MetadataBoundary"]
-d:I[9665,[],"OutletBoundary"]
-10:I[4911,[],"AsyncMetadataOutlet"]
-12:I[9665,[],"ViewportBoundary"]
-14:I[6614,[],""]
-:HL["/harvest_frenzy/_next/static/css/1f36248e3bf588ab.css","style"]
-0:{"P":null,"b":"y9h878Ik7pKwSgT-e-RgY","p":"/harvest_frenzy","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/harvest_frenzy/_next/static/css/1f36248e3bf588ab.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap","rel":"stylesheet"}]]}],["$","body",null,{"className":"font-body antialiased","children":[["$","$L2",null,{}],["$","$L3",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L6",null,{}]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L7",null,{"Component":"$8","searchParams":{},"params":{},"promises":["$@9","$@a"]}],["$","$Lb",null,{"children":"$Lc"}],null,["$","$Ld",null,{"children":["$Le","$Lf",["$","$L10",null,{"promise":"$@11"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","UtuCV-9jNiuEcswMpgc9X",{"children":[["$","$L12",null,{"children":"$L13"}],null]}],null]}],false]],"m":"$undefined","G":["$14","$undefined"],"s":false,"S":true}
-15:"$Sreact.suspense"
-16:I[4911,[],"AsyncMetadata"]
-9:{}
+2:I[356,["333","static/chunks/333-595904eed266dbfe.js","718","static/chunks/718-0291de87e5acaadd.js","177","static/chunks/app/layout-9dcd1e06fd6c7250.js"],"default"]
+3:I[1483,["333","static/chunks/333-595904eed266dbfe.js","718","static/chunks/718-0291de87e5acaadd.js","177","static/chunks/app/layout-9dcd1e06fd6c7250.js"],"ThemeProvider"]
+4:I[4505,["333","static/chunks/333-595904eed266dbfe.js","718","static/chunks/718-0291de87e5acaadd.js","177","static/chunks/app/layout-9dcd1e06fd6c7250.js"],"LanguageProvider"]
+5:I[7555,[],""]
+6:I[1295,[],""]
+7:I[2558,["333","static/chunks/333-595904eed266dbfe.js","718","static/chunks/718-0291de87e5acaadd.js","177","static/chunks/app/layout-9dcd1e06fd6c7250.js"],"Toaster"]
+8:I[894,[],"ClientPageRoot"]
+9:I[6222,["333","static/chunks/333-595904eed266dbfe.js","318","static/chunks/318-e24d3f5203dda43a.js","974","static/chunks/app/page-e33e61c7b3ec7a29.js"],"default"]
+c:I[9665,[],"MetadataBoundary"]
+e:I[9665,[],"OutletBoundary"]
+11:I[4911,[],"AsyncMetadataOutlet"]
+13:I[9665,[],"ViewportBoundary"]
+15:I[6614,[],""]
+:HL["/harvest_frenzy/_next/static/css/1de589a0e4b01a0c.css","style"]
+0:{"P":null,"b":"0fkE5TrdWTbYKwibWu3Q_","p":"/harvest_frenzy","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/harvest_frenzy/_next/static/css/1de589a0e4b01a0c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap","rel":"stylesheet"}]]}],["$","body",null,{"className":"font-body antialiased","children":[["$","$L2",null,{}],["$","$L3",null,{"attribute":"class","defaultTheme":"dark","enableSystem":true,"disableTransitionOnChange":true,"children":[["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}]]}]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L8",null,{"Component":"$9","searchParams":{},"params":{},"promises":["$@a","$@b"]}],["$","$Lc",null,{"children":"$Ld"}],null,["$","$Le",null,{"children":["$Lf","$L10",["$","$L11",null,{"promise":"$@12"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","I8EcsslHeI6ppu5DzZEvW",{"children":[["$","$L13",null,{"children":"$L14"}],null]}],null]}],false]],"m":"$undefined","G":["$15","$undefined"],"s":false,"S":true}
+16:"$Sreact.suspense"
+17:I[4911,[],"AsyncMetadata"]
 a:{}
-c:["$","$15",null,{"fallback":null,"children":["$","$L16",null,{"promise":"$@17"}]}]
+b:{}
+d:["$","$16",null,{"fallback":null,"children":["$","$L17",null,{"promise":"$@18"}]}]
+10:null
+14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 f:null
-13:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-e:null
-17:{"metadata":[["$","title","0",{"children":"Harvest Frenzy - Learn Harvest Mechanics"}],["$","meta","1",{"name":"description","content":"A mini game designed to help you understand the mechanics of Harvest/Crop rotation in Path of Exile. Improve your skills and strategies in a fun and engaging way."}],["$","link","2",{"rel":"icon","href":"/harvest_frenzy/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
-11:{"metadata":"$17:metadata","error":null,"digest":"$undefined"}
+18:{"metadata":[["$","title","0",{"children":"Harvest Frenzy - Learn Harvest Mechanics"}],["$","meta","1",{"name":"description","content":"A mini game designed to help you understand the mechanics of Harvest/Crop rotation in Path of Exile. Improve your skills and strategies in a fun and engaging way."}],["$","link","2",{"rel":"icon","href":"/harvest_frenzy/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
+12:{"metadata":"$18:metadata","error":null,"digest":"$undefined"}
